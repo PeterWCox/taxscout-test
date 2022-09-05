@@ -3,13 +3,16 @@
     padding: 0px;
 }
 
+$color: red;
+
 .container {
 
-    background-color: red;
+    background-color: orange;
 
     .navbar {
-        background-color: blue;
-        color: yellow;
+        display: flex;
+        justify-content: space-between;
+        background-color: $color;
     }
 
 
