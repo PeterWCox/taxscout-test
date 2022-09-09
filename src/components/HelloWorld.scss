@@ -7,13 +7,21 @@ $color: red;
 
 .container {
 
-    background-color: orange;
-
     .navbar {
         display: flex;
         justify-content: space-between;
         background-color: $color;
+
+        input {
+            width: 200px;
+        }
     }
 
-
+    .callout {
+        position: absolute;
+        background-color: yellow;
+        width: 300;
+        // height: 150px;
+        right: 0px;
+    }
 }
