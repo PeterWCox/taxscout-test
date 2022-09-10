@@ -11,16 +11,16 @@ export interface Author {
     //First and last name in proper case concatenated for display
     authordisplay: string;
   
-    //Authors first name
+    //First name
     authorfirst: string;
   
-    //Author First name cast to lower case
+    //First name cast to lower case
     authorfirstlc: string;
   
-    //A unique authorid
+    //Unique ID
     authorid: string;
   
-    //Authors last name
+    //ast name
     authorlast: string;
   
     //Author upper-case of author's name with the last name first

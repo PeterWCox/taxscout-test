@@ -20,36 +20,13 @@ const HelloWorld: React.FC<{}> = () => {
   const [searchTerm, setSearchTerm] = React.useState('')
 
   React.useEffect(() => {
-    
-    //Works
-    
-    //Authors
-    const getAuthors = async (start: number, end: number, expandLevel: ExpandLevel, firstName: string, lastName: string): Promise<void> => {
-      var config = {
-        method: 'get',
-        url: `https://reststop.randomhouse.com/resources/authors?
-          start=${start}&
-          max=${end}&
-          expandLevel=${expandLevel}&
-          firstName=${firstName}&
-          lastName=${lastName}`.replace(/\s/g, ""),
-        headers: { 
-          'Accept': 'application/json'
-        }
-      };
-      
-      axios(config)
-      .then(function (response) {
-        console.log(response);
-        setAuthors(response.data.author);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    }
-    getAuthors(0, 5, ExpandLevel.LinksAndDetails, "John", "Williams");
 
-    //Works
+    //If search term is blank or white space
+    if (searchTerm.trim() === '') {
+      return;
+    }
+
+    //If search term only has one word - use Works API
     const getWorks = async (start: number, end: number, expandLevel: ExpandLevel, search: string): Promise<void> => {
       var config = {
         method: 'get',
@@ -57,12 +34,11 @@ const HelloWorld: React.FC<{}> = () => {
           start=${start}&
           max=${end}&
           expandLevel=${expandLevel}&
-          search=${searchTerm}`.replace(/\s/g, ""),
+          search=${search}`.replace(/\s/g, ""),
         headers: { 
           'Accept': 'application/json'
         }
-      };
-      
+      };      
       axios(config)
       .then(function (response) {
         console.log(response);
@@ -72,10 +48,15 @@ const HelloWorld: React.FC<{}> = () => {
         console.log(error);
       });
     }
-    if (searchTerm !== "") {
-      getWorks(0, 5, ExpandLevel.LinksAndDetails, searchTerm);
-    } 
+    //If search term comprises exactly one word, use 'Works' API
+    if (searchTerm.split(' ').length === 1) {
+      getWorks(0, 10, ExpandLevel.LinksAndDetails, searchTerm);
+      // return;
+    }
 
+
+      
+   
 
   }, [searchTerm]);
 
@@ -91,15 +72,6 @@ const HelloWorld: React.FC<{}> = () => {
         onChange={debounce((e: any) => setSearchTerm(state => e.target.value), 500)}
       />
 
-       {/* Titles */}
-       <div>
-        <h5>Authors</h5>
-          {authors?.map((author: Author, index) => {
-            return <div key={index}>{author.spotlight ?? ""}</div>
-          })}
-      </div>
-
-     
       {/* Works */}
       <div>
         <h5>Works</h5>
