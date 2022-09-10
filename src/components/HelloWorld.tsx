@@ -37,7 +37,7 @@ const HelloWorld = () =>
 
   return (
     <section>
-      <h1>Recipes</h1>
+      <h1>Cum</h1>
       <div className='content'>
         {renderRecipes()}
       </div>
