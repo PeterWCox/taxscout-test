@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
+import { ExpandLevel } from '../models/Misc'
 
 export const initialState = {
   loading: false,
@@ -33,24 +35,51 @@ const worksSlice = createSlice({
 export const { getWorks, getWorksSuccess, getWorksFailure } = worksSlice.actions
 
 // A selector
-export const worksSelector = (state: any) => state.recipes
+export const worksSelector = (state: any) => state.works
 
 // The reducer
 export default worksSlice.reducer
 
 // Asynchronous thunk action
-export function fetchRecipes()
+export function fetchWorks()
 {
   return async (dispatch: any) =>
   {
     dispatch(getWorks())
 
+
     try
     {
-      const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
-      const data = await response.json()
+      //Works
+      let works: any = [];
 
-      dispatch(getWorksSuccess(data.meals))
+      const getWorks = async (start: number, end: number, expandLevel: ExpandLevel, search: string): Promise<void> => {
+        var config = {
+          method: 'get',
+          url: `https://reststop.randomhouse.com/resources/works?
+            start=${start}&
+            max=${end}&
+            expandLevel=${expandLevel}&
+            search=${search}`.replace(/\s/g, ""),
+          headers: { 
+            'Accept': 'application/json'
+          }
+        };
+        
+        axios(config)
+        .then((response) => {
+          console.log(response)
+          works = response.data.work;
+          dispatch(getWorksSuccess(works))
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      }
+      await getWorks(0, 10, ExpandLevel.LinksAndDetails, "Harry");
+      // console.log("WORKS");
+
+
     } catch (error)
     {
       dispatch(getWorksFailure())
