@@ -1,5 +1,10 @@
 import { Titles } from "./Misc";
 
+//NOTES:
+
+//1. The API only works for 1 word!
+
+
 export interface Work {
 
     //e.g. "https://reststop.randomhouse.com/resources/works/23847"

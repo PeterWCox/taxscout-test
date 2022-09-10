@@ -8,7 +8,7 @@ import { Work } from "../models/Work";
 import { debounce } from "lodash";
 
 
-
+// User Types "James Stoner"
 
 
 
@@ -22,6 +22,34 @@ const HelloWorld: React.FC<{}> = () => {
   React.useEffect(() => {
     
     //Works
+    
+    //Authors
+    const getAuthors = async (start: number, end: number, expandLevel: ExpandLevel, firstName: string, lastName: string): Promise<void> => {
+      var config = {
+        method: 'get',
+        url: `https://reststop.randomhouse.com/resources/authors?
+          start=${start}&
+          max=${end}&
+          expandLevel=${expandLevel}&
+          firstName=${firstName}&
+          lastName=${lastName}`.replace(/\s/g, ""),
+        headers: { 
+          'Accept': 'application/json'
+        }
+      };
+      
+      axios(config)
+      .then(function (response) {
+        console.log(response);
+        setAuthors(response.data.author);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+    getAuthors(0, 5, ExpandLevel.LinksAndDetails, "John", "Williams");
+
+    //Works
     const getWorks = async (start: number, end: number, expandLevel: ExpandLevel, search: string): Promise<void> => {
       var config = {
         method: 'get',
@@ -29,7 +57,7 @@ const HelloWorld: React.FC<{}> = () => {
           start=${start}&
           max=${end}&
           expandLevel=${expandLevel}&
-          search=${search}`.replace(/\s/g, ""),
+          search=${searchTerm}`.replace(/\s/g, ""),
         headers: { 
           'Accept': 'application/json'
         }
@@ -44,7 +72,11 @@ const HelloWorld: React.FC<{}> = () => {
         console.log(error);
       });
     }
-    getWorks(0, 100, ExpandLevel.LinksAndDetails, searchTerm);
+    if (searchTerm !== "") {
+      getWorks(0, 5, ExpandLevel.LinksAndDetails, searchTerm);
+    } 
+
+
   }, [searchTerm]);
 
   
@@ -56,15 +88,24 @@ const HelloWorld: React.FC<{}> = () => {
       <input 
         type="text" 
         placeholder="Search" 
-        onChange={debounce((e: any) => setSearchTerm(e.target.value), 500)}
+        onChange={debounce((e: any) => setSearchTerm(state => e.target.value), 500)}
       />
 
+       {/* Titles */}
+       <div>
+        <h5>Authors</h5>
+          {authors?.map((author: Author, index) => {
+            return <div key={index}>{author.spotlight ?? ""}</div>
+          })}
+      </div>
+
      
-      {/* Authors */}
+      {/* Works */}
       <div>
+        <h5>Works</h5>
         <ul>
           {works?.map((works: Work, index) => {
-            return <li key={index}>{works.titleAuth}</li>
+            return <li key={index}>{works.titleAuth ?? ""}</li>
           })}
         </ul>
       </div>
