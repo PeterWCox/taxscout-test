@@ -13,39 +13,46 @@ const HelloWorld = () =>
 {
 
   const dispatch: any = useDispatch();
-
-  const { recipes, loadingRecipes, recipesHasErrors } = useSelector(recipesSelector);
-  const { works, loadingWorks, worksHasErrors } = useSelector(worksSelector);
-
+  const { works, loadingWorks, worksHasErrors } = 
+    useSelector(worksSelector);
 
   useEffect(() =>
   {
     dispatch(fetchWorks())
-    dispatch(fetchRecipes())
   }, [dispatch])
-
-  const renderRecipes = () =>
-  {
-    if (loadingRecipes) return <p>Loading recipes..</p>
-    if (recipesHasErrors) return <p>Cannot display recipes...</p>
-
-    return recipes.map((recipe: any) =>
-      <div key={recipe.idMeal} className='tile'>
-        <h2>{recipe.strMeal}</h2>
-      </div>
-    )
-  }
 
   const renderWorks = () =>
   {
     if (loadingWorks) return <p>Loading works...</p>
     if (worksHasErrors) return <p>Cannot display works...</p>
 
-    return works.map((work: Work) => {
+    return works.map((work: any) => {
+
+      // console.log(work.titles.isbn);
+
+      //Check if work.titles.isbn is an array of objects or one object
+      let imageUrl = "";
+      
+      let isbn = work.titles.isbn;
+      if (!work?.titles) {
+        // console.log(isbn)
+      }
+      else if (Array.isArray(isbn)) {
+        // console.log(isbn)
+        imageUrl = `https://images.randomhouse.com/cover/${work.titles?.isbn[0].$}`;
+      }
+      else {
+        console.log(isbn["$"])
+        console.log(`https://images.randomhouse.com/cover/${isbn["$"]}`)
+        imageUrl = `https://images.randomhouse.com/cover/${isbn["$"]}`;
+      }
+
       return (
-        <p>
-          {work.titleAuth}
-        </p>
+        <div>
+        <p>{work.titleAuth}</p>
+        <img src={imageUrl}>
+        </img>
+        </div>
         )
       });
   }
@@ -67,3 +74,4 @@ const HelloWorld = () =>
 
 
 export default HelloWorld;
+//

@@ -13,6 +13,7 @@ export interface Work {
     //e.g. "2002-10-31T00:00:00-05:00"
     onsaledate: string;
   
+    //Titles (includes ISBN only)
     titles: Titles;
     
     // e.g. The Book of My Life : Girolamo Cardano; Introduction by Anthony Grafton; Translated by Jean Stoner"
@@ -32,9 +33,13 @@ export interface Work {
 }
 
 export interface Titles {
-  isbn: Isbn;
+  isbn: Isbn[];
 }
 export interface Isbn {
+
+
   "@formatcode": string;
+
+  //ISBN Number e.g. 9780307831385
   $:             string;
 }
