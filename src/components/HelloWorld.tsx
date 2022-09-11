@@ -47,6 +47,8 @@ const HelloWorld = () =>
         imageUrl = `https://images.randomhouse.com/cover/${isbn["$"]}`;
       }
 
+      
+
       return (
         <div>
         <p>{work.titleAuth}</p>
@@ -59,12 +61,114 @@ const HelloWorld = () =>
 
 
   return (
-    <section>
+    <div className="container">
+
+      <div className="navbar">
+        <div className="searchbarContainer">
+          <input type="text" placeholder="Search for a book" />
+          <div className="searchbarResults">
+            <div className="searchbarResults_Container">
+
+              <div className="searchbarResult">
+                
+                {/* Book Photo */}
+                <div className="searchbarResult_Image">
+                  <img src="https://images.randomhouse.com/cover/9780593099322" />
+                </div>
+
+                {/* Content */}
+                <div className="searchbarResult_Content">
+                  <div className="searchbarResult_Title">
+                    Harry Potter and the Sourcere's Stone (Harry Potter, #1)
+                  </div>
+                  <div className="searchbarResult_Author">
+                    by J.K. Rowling)
+                  </div>
+                </div>
+
+              </div>
+
+              <div className="searchbarResult">
+                
+                {/* Book Photo */}
+                <div className="searchbarResult_Image">
+                  <img src="https://images.randomhouse.com/cover/9780593099322" />
+                </div>
+
+                {/* Content */}
+                <div className="searchbarResult_Content">
+                  <div className="searchbarResult_Title">
+                    Harry Potter and the Sourcere's Stone (Harry Potter, #1)
+                  </div>
+                  <div className="searchbarResult_Author">
+                    by J.K. Rowling)
+                  </div>
+                </div>
+
+              </div>
+
+              <div className="searchbarResult">
+                
+                {/* Book Photo */}
+                <div className="searchbarResult_Image">
+                  <img src="https://images.randomhouse.com/cover/9780593099322" />
+                </div>
+
+                {/* Content */}
+                <div className="searchbarResult_Content">
+                  <div className="searchbarResult_Title">
+                    The Secret Island
+                  </div>
+                  <div className="searchbarResult_Author">
+                    by J.K. Rowling)
+                  </div>
+                </div>
+
+              </div>
+
+              <div className="searchbarResult">
+                
+                {/* Book Photo */}
+                <div className="searchbarResult_Image">
+                  <img src="https://images.randomhouse.com/cover/9780593099322" />
+                </div>
+
+                {/* Content */}
+                <div className="searchbarResult_Content">
+                  <div className="searchbarResult_Title">
+                    Harry Potter and the Sourcere's Stone (Harry Potter, #1)
+                  </div>
+                  <div className="searchbarResult_Author">
+                    by J.K. Rowling)
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          
+         
+
+          </div>
+        <div>
+       
+        </div>
+
+        </div>
+    
+      </div>
+     
+
+
       <h1>Hello</h1>
       <div className='content'>
         {renderWorks()}      
       </div>
-    </section>
+
+
+      
+    </div>
   )
 }
 

@@ -3,29 +3,97 @@
     padding: 0px;
 }
 
-$color: red;
+$color: yellow;
 
 .container {
 
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-
     .navbar {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         background-color: $color;
+        padding: 10px;
 
-        input {
-            width: 200px;
+        position: fixed;
+        top: 0;
+        width: 100%;
+
+        .searchbarContainer {
+            background-color: limegreen;
+            padding-right: 20px;
+            width: 33%;
+
+
+            input {
+                width: 100%;
+            }
+
+            .searchbarResults {
+                display: flex;
+                flex-direction: row;
+                position: absolute;
+                padding-right: 20px;
+
+                background-color: lightblue;
+
+                .searchbarResult {
+                    display: flex;
+                    flex-direction: row;
+                    gap: 10px;
+                    // position: absolute;
+
+                    // height: 616px;
+
+                    .searchbarResult_Image {
+                        // width: 20%;
+
+                        img {
+                            width: 50px;
+                            height: 63px;
+                        }
+                    }
+
+                    .searchbarResult_Content {
+                        width: 80%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-around;
+                        padding: 8px;
+
+                        .searchbarResult_Title {
+                            pointer-events: auto;
+                            color: #333333;
+                            font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+                            font-size: 14px;
+                            line-height: 18px;
+                            font-weight: bold;
+                            word-wrap: break-word;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            box-sizing: inherit;
+                        }
+
+                        .searchbarResult_Author {
+                            line-height: 18px;
+                            pointer-events: auto;
+                            overflow-wrap: break-word;
+                            margin-top: 4px;
+                            color: #333333;
+                            font-family: "Merriweather", "Georgia", serif;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            font-size: 12px;
+                            box-sizing: inherit;
+                        }
+                    }
+
+                }
+            }
+
         }
+
+
     }
 
-    .callout {
-        position: absolute;
-        background-color: yellow;
-        width: 300;
-        // height: 150px;
-        right: 0px;
-    }
 }
