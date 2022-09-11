@@ -8,7 +8,7 @@ export interface ISearchCardProps {
 export const SearchCard = (props: ISearchCardProps) => {
 
       let imageUrl = "";
-      let isbn = props.work.titles.isbn;
+      let isbn: any = props.work.titles.isbn;
 
       if (!props.work?.titles) {
       }
@@ -38,7 +38,6 @@ export const SearchCard = (props: ISearchCardProps) => {
                 <div className="searchCard-Content__Title">
                     {/* {props.work.titleAuth} */}
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium consequuntur autem minus velit ratione repudiandae.
-
                 </div>
                 <div className="searchCard_Content__Author">
                     {`by ${authorName}`}
@@ -48,5 +47,3 @@ export const SearchCard = (props: ISearchCardProps) => {
         </div>
     );
 }
-
-//border: 1px solid rgb(216, 216, 216)
