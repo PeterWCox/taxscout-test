@@ -26,7 +26,9 @@ const HelloWorld = () =>
     <div className="container">
       <nav>
         <div className="searchbox">
-          <input className="searchbox_searchbar" placeholder="Quick search..." />
+          <div>
+            <input className="searchbox_searchbar" placeholder="Quick search..." />
+          </div>
           <div className="searchbox_searchResults">
               {works.map((work: Work) => {
                 return <SearchCard work={work} />
