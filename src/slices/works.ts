@@ -76,7 +76,7 @@ export function fetchWorks()
           console.log(error);
         });
       }
-      await getWorks(0, 10, ExpandLevel.LinksAndDetails, "Harry");
+      await getWorks(0, 3, ExpandLevel.LinksAndDetails, "Harry");
       // console.log("WORKS");
 
 
