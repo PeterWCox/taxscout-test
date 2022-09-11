@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchRecipes, recipesSelector } from '../slices/recipes'
 import { fetchWorks, worksSelector } from '../slices/works';
 import './HelloWorld.scss'
 import { Author } from "../models/Author";
@@ -65,7 +64,9 @@ const HelloWorld = () =>
 
       <div className="navbar">
         <div className="searchbarContainer">
-          <input type="text" placeholder="Search for a book" />
+          <div>
+            <input type="text" placeholder="Search for a book" />
+          </div>
           <div className="searchbarResults">
             <div className="searchbarResults_Container">
 
@@ -82,7 +83,7 @@ const HelloWorld = () =>
                     Harry Potter and the Sourcere's Stone (Harry Potter, #1)
                   </div>
                   <div className="searchbarResult_Author">
-                    by J.K. Rowling)
+                    by J.K. Rowling
                   </div>
                 </div>
 
@@ -117,10 +118,10 @@ const HelloWorld = () =>
                 {/* Content */}
                 <div className="searchbarResult_Content">
                   <div className="searchbarResult_Title">
-                    The Secret Island
+                    The Secret Island, #1
                   </div>
                   <div className="searchbarResult_Author">
-                    by J.K. Rowling)
+                    by J.K. Rowling
                   </div>
                 </div>
 
@@ -139,7 +140,7 @@ const HelloWorld = () =>
                     Harry Potter and the Sourcere's Stone (Harry Potter, #1)
                   </div>
                   <div className="searchbarResult_Author">
-                    by J.K. Rowling)
+                    by J.K. Rowling
                   </div>
                 </div>
 

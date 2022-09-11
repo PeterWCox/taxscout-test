@@ -8,23 +8,23 @@ $color: yellow;
 .container {
 
     .navbar {
-        display: flex;
-        justify-content: flex-end;
+        // display: flex;
+        // justify-content: flex-end;
         background-color: $color;
         padding: 10px;
 
-        position: fixed;
+        // position: fixed;
         top: 0;
         width: 100%;
 
         .searchbarContainer {
             background-color: limegreen;
             padding-right: 20px;
-            width: 33%;
+            // width: 33%;
 
 
             input {
-                width: 100%;
+                // width: 100%;
             }
 
             .searchbarResults {
