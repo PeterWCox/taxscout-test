@@ -16,6 +16,8 @@ export const SearchCardResults = (props: ISearchCardResults) => {
 
     const { works, loading, worksHasErrors } = useSelector(worksSelector);
 
+    console.log(works);
+
     //Render nothing if searchbar empty 
     if (props.searchTerm.trim() === "") return null;
 
