@@ -1,4 +1,4 @@
-import { Work } from "../models/Work"
+import { Work } from '../../models/Work';
 import './SearchCard.scss'
 
 export interface ISearchCardProps {
@@ -15,7 +15,7 @@ export const SearchCard = (props: ISearchCardProps) => {
                 </div>
                 <div className="searchbarResult_Content">
                     <div className="searchbarResult_Title">
-                       {props.work?.titleweb}
+                       {props.work.titleweb}
                     </div>
                     <div className="searchbarResult_Author">
                         by {props.work.AuthorName()}

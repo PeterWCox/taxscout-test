@@ -88,6 +88,8 @@ export function fetchWorks(searchTerm: string)
               newWork.titleshort = w.titleshort ?? "";
               newWork.titleweb = w.titleweb  ?? "";
               newWork.workid = w.workid ?? "";
+              console.log("ARRAY", worksToReturn);
+
               return newWork;
             });
           }
@@ -103,7 +105,7 @@ export function fetchWorks(searchTerm: string)
             worksToReturn.titleshort = response.data.work.titleshort ?? "";
             worksToReturn.titleweb = response.data.work.titleweb ?? "";
             worksToReturn.workid = response.data.work.workid ?? "";
-            return worksToReturn;
+            console.log("SINGLE", worksToReturn);
           }
 
           console.log(worksToReturn);

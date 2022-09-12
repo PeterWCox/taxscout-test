@@ -4,8 +4,8 @@ import works from "../slices/works";
 import { ShimmerThumbnail  } from "react-shimmer-effects";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWorks, worksSelector } from '../slices/works';
-import { SearchCard } from "./SearchCard";
 import { Constants } from "../common/Constants";
+import { SearchCard } from "./SearchCard/SearchCard";
 
 export interface ISearchResultsProps {
     work: Work[] | Work;
@@ -49,6 +49,8 @@ export const SearchResults = (props: ISearchResultsProps) => {
             </div>
         )
     }
+
+    console.log("NOT A BOOK!", props.work);
 
     //Otherwise a single book is returned
     return (
