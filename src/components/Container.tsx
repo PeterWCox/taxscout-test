@@ -7,7 +7,7 @@ import { Work } from "../models/Work";
 import { debounce, uniqueId } from "lodash";
 import { ShimmerThumbnail  } from "react-shimmer-effects";
 import { Constants } from "../common/Constants";
-import { SearchResults } from "./SearchResults/SearchResults";
+import { SearchCardResults } from "./SearchCardResults/SearchResults";
 
 const HelloWorld = () =>
 {
@@ -23,6 +23,8 @@ const HelloWorld = () =>
 
   return (
     <div className="container">
+
+      {/* Navbar */}
       <nav>
         <h1>Search for books...</h1>
         <div className="searchbox">
@@ -35,13 +37,14 @@ const HelloWorld = () =>
           />
 
           {/* Search results */}  
-          <SearchResults 
+          <SearchCardResults 
             work={works}
             searchTerm={searchTerm} 
           />
 
         </div>
       </nav>
+
      </div>
   );
 

@@ -68,8 +68,6 @@ export class Work {
 
     public AuthorName = (): string => {
 
-        console.log(this.titleAuth);
-
         //Try and get beautified name using titleAuth i.e. TITLE : Author, if 
         //not resort to FLEMING, IAN as a a last resort
         return (this.titleAuth && this.titleAuth !== "") ? 
