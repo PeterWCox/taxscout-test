@@ -36,7 +36,7 @@ export const SearchResults = (props: ISearchResultsProps) => {
         return (
             <div className="searchbox_searchResults">
                 <img src="https://i.giphy.com/media/LkjlH3rVETgsg/200.gif"></img>
-                <a className="searchbox_searchResults--SeeAll">No results - sorry about that...</a>
+                <a className="searchbox_searchResults--SeeAll">No results for '{props.searchTerm}' - sorry about that...</a>
             </div>
         )
     }
@@ -54,7 +54,9 @@ export const SearchResults = (props: ISearchResultsProps) => {
                     />
                     )
                 })}
-                <a className="searchbox_searchResults--SeeAll">See all results for {props.searchTerm} </a>
+                <a className="searchbox_searchResults--SeeAll">
+                    See all results for '{props.searchTerm}' 
+                </a>
             </div>
         </>
         )

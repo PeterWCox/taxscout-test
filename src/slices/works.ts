@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { ExpandLevel } from '../models/Misc'
 import { Work, WorkResponse } from '../models/Work'
 import { IWorksRepository, WorksRepository_API } from '../repositories/WorksRepository'
 
