@@ -7,8 +7,6 @@ export interface ISearchCardProps {
 
 export const SearchCard = (props: ISearchCardProps) => {
 
-    const author: string = props.work.AuthorName();
-
     return (
         <div className="searchbar_Result">
             <a href={props.work.AmazonUrl()}>
@@ -20,7 +18,7 @@ export const SearchCard = (props: ISearchCardProps) => {
                        {props.work?.titleweb}
                     </div>
                     <div className="searchbarResult_Author">
-                        by {author}
+                        by {props.work.AuthorName()}
                     </div>
                 </div>
             </a>

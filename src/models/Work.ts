@@ -63,9 +63,11 @@ export class Work {
 
     public AuthorName = (): string => {
 
-        return this.titleshort;
+        console.log(this.titleAuth);
 
-        return (this.titleAuth && this.titleAuth.trim() !== "") ? 
+        //Try and get beautified name using titleAuth i.e. TITLE : Author, if 
+        //not resort to FLEMING, IAN as a a last resort
+        return (this.titleAuth && this.titleAuth !== "") ? 
             (this.titleAuth?.split(":")[1]?.trim() ?? this.authorweb) :
             this.authorweb;
     }

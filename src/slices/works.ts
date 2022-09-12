@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { Work } from '../models/Author'
 import { ExpandLevel } from '../models/Misc'
+import { Work } from '../models/Work'
 
 export const initialState = {
   loading: false,
@@ -32,16 +32,12 @@ const worksSlice = createSlice({
   },
 })
 
-// Three actions generated from the slice
+//Exports
 export const { getWorks, getWorksSuccess, getWorksFailure } = worksSlice.actions
-
-// A selector
 export const worksSelector = (state: any) => state.works
-
-// The reducer
 export default worksSlice.reducer
 
-// Asynchronous thunk action
+//Thunk
 export function fetchWorks(searchTerm: string)
 {
   return async (dispatch: any) =>
@@ -72,9 +68,9 @@ export function fetchWorks(searchTerm: string)
 
           console.log(response);
 
-          let worksToReturn: any;
+          let worksToReturn: Work | Work[];
 
-          //Check if response.data.work is a property
+          //Check if response.data.work is a property - if not return nothing
           if (!response?.data?.work) {
             dispatch(getWorksSuccess([]));
             return;
@@ -82,12 +78,12 @@ export function fetchWorks(searchTerm: string)
 
           if (Array.isArray(response.data.work)) {
             worksToReturn = response.data.work.map((w: any) => {
-              const newWork = new Work();
+              let newWork = new Work();
               newWork["@uri"] = w["@uri"] ?? ""
               newWork.authorweb = w.authorweb ?? "";
               newWork.onsaledate = w.onsaledate ?? "";
               newWork.titles = w.titles ?? "";
-              newWork.titleAuth ?? "";
+              newWork.titleAuth = w.titleAuth ?? "";
               newWork.titleSubtitleAuth = w.titleSubtitleAuth ?? "";
               newWork.titleshort = w.titleshort ?? "";
               newWork.titleweb = w.titleweb  ?? "";
@@ -96,6 +92,7 @@ export function fetchWorks(searchTerm: string)
             });
           }
           else {
+
             worksToReturn = new Work()
             worksToReturn["@uri"] = response.data.work["@uri"] ?? "";
             worksToReturn.authorweb = response.data.work.authorweb ?? "";

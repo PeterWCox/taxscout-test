@@ -15,27 +15,29 @@ export const SearchResults = (props: ISearchResultsProps) => {
 
     const { works, loading, worksHasErrors } = useSelector(worksSelector);
 
-    if (worksHasErrors) {
-        return <p>An error has occured:</p>
+    if (!loading && works.length === 0) {
+        return null;
     }
 
-    //If still loading data from API, return X Shimmers
-    // if (loading) {
-    //     return (
-    //         [...Array(Constants.NUMBER_OF_SEARCH_RESULTS)].map((i) => {
-    //             return (
-    //             <ShimmerThumbnail 
-    //                 key={uniqueId()}
-    //                 height={60}
-    //             />
-    //         )})
-    //     );
-    // }
+    // If still loading data from API, return X Shimmers
+    if (loading) {
+        return (
+            <div className="searchbox_searchResults searchbox_searchResultsMinimumWidth">
+            {[...Array(Constants.NUMBER_OF_SEARCH_RESULTS)].map((i) => {
+                return (
+                <ShimmerThumbnail 
+                    key={uniqueId()}
+                    height={60}
+                />
+            )})}
+            </div>
+        );
+    }
 
     //If work is an array,
     if (Array.isArray(props.work)) {
         return (
-            <div>
+            <div className="searchbox_searchResults searchbox_searchResultsMinimumWidth">
                 {works?.map((work: Work) => {
                     return (
                     <SearchCard 
@@ -50,10 +52,12 @@ export const SearchResults = (props: ISearchResultsProps) => {
 
     //Otherwise a single book is returned
     return (
-        <SearchCard 
-            key={uniqueId()}
-            work={props.work} 
-        />
+        <div className="searchbox_searchResults searchbox_searchResultsMinimumWidth">
+            <SearchCard 
+                key={uniqueId()}
+                work={props.work} 
+            />
+        </div>
     )
 
 }

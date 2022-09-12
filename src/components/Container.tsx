@@ -3,7 +3,6 @@ import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchWorks, worksSelector } from '../slices/works';
 import './Container.scss'
-import { ExpandLevel } from "../models/Misc";
 import { Work } from "../models/Work";
 import { debounce, uniqueId } from "lodash";
 import { SearchCard } from "./SearchCard";
@@ -38,16 +37,11 @@ const HelloWorld = () =>
             // onBlur={() => setIsSearchResultsDisplayed(false)}
           />
 
-          {/* Search results */}
-          {(works && searchTerm?.trim() && isSearchResultsDisplayed) && <div className="searchbox_searchResults searchbox_searchResultsMinimumWidth">
-            <SearchResults work={works as any} />
-          </div>}
-
+          <SearchResults 
+            work={works as any} 
+          />        
         </div>
       </nav>
-
-      <h1>{searchTerm}</h1>
-
      </div>
   );
 
