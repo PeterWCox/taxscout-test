@@ -1,5 +1,10 @@
 import { Isbn, Titles } from "./Misc";
 
+export class WorkResponse {
+    work: Work | Work[];
+    errorMessage: string;
+}
+
 export class Work {
     //e.g. "https://reststop.randomhouse.com/resources/works/23847"
     "@uri": string;

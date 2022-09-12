@@ -11,14 +11,14 @@ export const SearchCard = (props: ISearchCardProps) => {
         <div className="searchbar_Result">
             <a href={props.work.AmazonUrl()}>
                 <div className="searchbarResult_Image">
-                    <img src={props.work.CoverUrl()} />
+                    <img src={props.work?.CoverUrl() || "Unknown"} />
                 </div>
                 <div className="searchbarResult_Content">
                     <div className="searchbarResult_Title">
                        {props.work.titleweb}
                     </div>
                     <div className="searchbarResult_Author">
-                        by {props.work.AuthorName()}
+                        by {props.work?.AuthorName() || "Unknown"}
                     </div>
                 </div>
             </a>

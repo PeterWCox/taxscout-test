@@ -6,8 +6,8 @@ import './Container.scss'
 import { Work } from "../models/Work";
 import { debounce, uniqueId } from "lodash";
 import { ShimmerThumbnail  } from "react-shimmer-effects";
-import { SearchResults } from "./SearchResults";
 import { Constants } from "../common/Constants";
+import { SearchResults } from "./SearchResults/SearchResults";
 
 const HelloWorld = () =>
 {
@@ -24,20 +24,20 @@ const HelloWorld = () =>
   return (
     <div className="container">
       <nav>
-        <div 
-          className="searchbox"  
-        >
+        <h1>Search for books...</h1>
+        <div className="searchbox">
 
           {/* Searchbox */}
           <input 
             placeholder={Constants.SEARCHBOX_PLACEHOLDER} 
             className="searchbox_searchbar" 
-            onChange={debounce((e: any) => setSearchTerm(state => e.target.value), 250)}
+            onChange={debounce((e: any) => setSearchTerm(state => e.target.value), Constants.DEBOUNCE_TIME_MILLISECONDS)}
           />
 
           {/* Search results */}  
           <SearchResults 
-            work={works as any} 
+            work={works}
+            searchTerm={searchTerm} 
           />
 
         </div>

@@ -9,15 +9,20 @@
     nav {
 
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         padding: 20px;
         background-color: #3B77D4;
+
+        h1 {
+            color: #fff;
+        }
 
         .searchbox {
 
             display: flex;
             flex-direction: row;
             width: 33%;
+            justify-content: space-between;
 
             .searchbox_searchbar {
                 width: 100%;
@@ -38,7 +43,22 @@
                 padding: 10px 10px 10px 10px;
                 box-shadow: rgba(0, 0, 0, 0.13) 0px 1.6px 3.6px 0px, rgba(0, 0, 0, 0.13) 0px 0.3px 0.9px 0px;
                 background-color: #fff;
+                width: 50%;
 
+                .searchbox_searchResults--SeeAll {
+                    margin-top: 10px;
+                    text-align: center;
+                    font-weight: 500;
+                    // display: inline-block;
+                    vertical-align: middle;
+                    width: 100%;
+                    color: #4C78D6;
+                    text-decoration: none;
+                    cursor: pointer;
+                    font-size: 14px;
+
+
+                }
 
                 //Override shimmer bottom margin of 20px
                 div {
@@ -46,10 +66,6 @@
                         margin-bottom: 0px;
                     }
                 }
-            }
-
-            .searchbox_searchResultsMinimumWidth {
-                width: 50%;
             }
 
             .searchbox_searchResults::before {

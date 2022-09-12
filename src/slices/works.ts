@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { ExpandLevel } from '../models/Misc'
-import { Work } from '../models/Work'
+import { Work, WorkResponse } from '../models/Work'
+import { IWorksRepository, WorksRepository_API } from '../repositories/WorksRepository'
 
 export const initialState = {
   loading: false,
@@ -44,89 +45,21 @@ export function fetchWorks(searchTerm: string)
   {
     dispatch(getWorks())
 
+    const repo: IWorksRepository = new WorksRepository_API();
 
-    try
-    {
+    if (searchTerm === "") {
+      dispatch(getWorksSuccess([]));
+      return;
+    }
 
-      const getWorks = async (start: number, end: number, expandLevel: ExpandLevel, search: string): Promise<void> => {
-        var config = {
-          method: 'get',
-          url: "https://reststop.randomhouse.com/resources/works",
-          params: {
-            start: start,
-            max: end,
-            expandLevel: expandLevel,
-            search: search
-          },
-          headers: { 
-            'Accept': 'application/json'
-          }
-        };
-        
-        axios(config)
-        .then((response) => {
+    const response: WorkResponse = await repo.getWorks(searchTerm);
 
-          console.log(response);
-
-          let worksToReturn: Work | Work[];
-
-          //Check if response.data.work is a property - if not return nothing
-          if (!response?.data?.work) {
-            dispatch(getWorksSuccess([]));
-            return;
-          }
-
-          if (Array.isArray(response.data.work)) {
-            worksToReturn = response.data.work.map((w: any) => {
-              let newWork = new Work();
-              newWork["@uri"] = w["@uri"] ?? ""
-              newWork.authorweb = w.authorweb ?? "";
-              newWork.onsaledate = w.onsaledate ?? "";
-              newWork.titles = w.titles ?? "";
-              newWork.titleAuth = w.titleAuth ?? "";
-              newWork.titleSubtitleAuth = w.titleSubtitleAuth ?? "";
-              newWork.titleshort = w.titleshort ?? "";
-              newWork.titleweb = w.titleweb  ?? "";
-              newWork.workid = w.workid ?? "";
-              console.log("ARRAY", worksToReturn);
-
-              return newWork;
-            });
-          }
-          else {
-
-            worksToReturn = new Work()
-            worksToReturn["@uri"] = response.data.work["@uri"] ?? "";
-            worksToReturn.authorweb = response.data.work.authorweb ?? "";
-            worksToReturn.onsaledate = response.data.work.onsaledate ?? "";
-            worksToReturn.titles = response.data.work.titles ?? "";
-            worksToReturn.titleAuth = response.data.work.titleAuth ?? "";
-            worksToReturn.titleSubtitleAuth = response.data.work.titleSubtitleAuth ?? "";
-            worksToReturn.titleshort = response.data.work.titleshort ?? "";
-            worksToReturn.titleweb = response.data.work.titleweb ?? "";
-            worksToReturn.workid = response.data.work.workid ?? "";
-            console.log("SINGLE", worksToReturn);
-          }
-
-          console.log(worksToReturn);
-
-          dispatch(getWorksSuccess(worksToReturn));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      }
-    
-      if (searchTerm.trim() !== "") {
-        await getWorks(0, 3, ExpandLevel.LinksAndDetails, `${searchTerm}`);
-      }
-      else {
-        dispatch(getWorksSuccess([]));
-      }
-
-    } catch (error)
-    {
+    if (response.errorMessage) {
       dispatch(getWorksFailure())
     }
+
+    dispatch(getWorksSuccess(response.work))
+
+    dispatch(getWorksFailure())
   }
 }
