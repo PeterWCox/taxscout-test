@@ -7,6 +7,9 @@ import { Author } from "../models/Author";
 import { ExpandLevel } from "../models/Misc";
 import { Work } from "../models/Work";
 import { debounce } from "lodash";
+import { SearchCard } from "./SearchCard";
+import { ShimmerThumbnail  } from "react-shimmer-effects";
+
 
 const HelloWorld = () =>
 {
@@ -20,45 +23,7 @@ const HelloWorld = () =>
     dispatch(fetchWorks())
   }, [dispatch])
 
-  const renderWorks = () =>
-  {
-    if (loadingWorks) return <p>Loading works...</p>
-    if (worksHasErrors) return <p>Cannot display works...</p>
-
-    return works.map((work: any) => {
-
-      // console.log(work.titles.isbn);
-
-      //Check if work.titles.isbn is an array of objects or one object
-      let imageUrl = "";
-      
-      let isbn = work.titles.isbn;
-      if (!work?.titles) {
-        // console.log(isbn)
-      }
-      else if (Array.isArray(isbn)) {
-        // console.log(isbn)
-        imageUrl = `https://images.randomhouse.com/cover/${work.titles?.isbn[0].$}`;
-      }
-      else {
-        console.log(isbn["$"])
-        console.log(`https://images.randomhouse.com/cover/${isbn["$"]}`)
-        imageUrl = `https://images.randomhouse.com/cover/${isbn["$"]}`;
-      }
-
-      
-
-      return (
-        <div>
-        <p>{work.titleAuth}</p>
-        <img src={imageUrl}>
-        </img>
-        </div>
-        )
-      });
-  }
-
-
+  
   return (
     <div className="container">
 
@@ -69,60 +34,29 @@ const HelloWorld = () =>
           <input placeholder="Quick search..." className="searchbox_searchbar" />
 
           <div className="searchbox_searchResults">
+            {works?.map((work: Work) => {
+              return (
+                <SearchCard work={work} />
+              )
+            })}
+            {[...Array(5)].map((i) => {
+              return (
+              <ShimmerThumbnail 
+                height={60}
+                // width={36} 
+                // rounded
+              />
+            )})}  
 
-            <div className="searchbar_Result">
-                  
-                  {/* Book Photo */}
-                  <div className="searchbarResult_Image">
-                    <img src="https://images.randomhouse.com/cover/9780593099322" />
-                  </div>
 
-                  {/* Content */}
-                  <div className="searchbarResult_Content">
-                    <div className="searchbarResult_Title">
-                      Harry Potter and the Sourcere's Stone (Harry Potter, #1)
-                    </div>
-                    <div className="searchbarResult_Author">
-                      by J.K. Rowling
-                    </div>
-                  </div>
-            </div>
-            <div className="searchbar_Result">
-                  
-                  {/* Book Photo */}
-                  <div className="searchbarResult_Image">
-                    <img src="https://images.randomhouse.com/cover/9780593099322" />
-                  </div>
-
-                  {/* Content */}
-                  <div className="searchbarResult_Content">
-                    <div className="searchbarResult_Title">
-                      Harry Potter and the Sourcere's Stone (Harry Potter, #1)
-                    </div>
-                    <div className="searchbarResult_Author">
-                      by J.K. Rowling
-                    </div>
-                  </div>
-            </div>
-            <div className="searchbar_Result">
-                  
-                  {/* Book Photo */}
-                  <div className="searchbarResult_Image">
-                    <img src="https://images.randomhouse.com/cover/9780593099322" />
-                  </div>
-
-                  {/* Content */}
-                  <div className="searchbarResult_Content">
-                    <div className="searchbarResult_Title">
-                      Harry Potter and the Sourcere's Stone (Harry Potter, #1)
-                    </div>
-                    <div className="searchbarResult_Author">
-                      by J.K. Rowling
-                    </div>
-                  </div>
-            </div>
 
           </div>
+
+          
+
+
+
+          
 
         </div>
 

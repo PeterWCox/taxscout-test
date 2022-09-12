@@ -97,6 +97,13 @@
                     }
 
                 }
+
+                //Override shimmer bottom margin of 20px
+                div {
+                    .shimmer {
+                        margin-bottom: 0px;
+                    }
+                }
             }
 
 

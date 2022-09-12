@@ -26,24 +26,21 @@ export const SearchCard = (props: ISearchCardProps) => {
         props.work.authorweb;
 
     return (
-        <div className="searchCard">
-                  
+        <div className="searchbar_Result">
             {/* Book Photo */}
-            <div className="searchCard-Image">
-                <img src={imageUrl} />
+            <div className="searchbarResult_Image">
+                <img src="https://images.randomhouse.com/cover/9780593099322" />
             </div>
-    
+
             {/* Content */}
-            <div className="searchCard-Content">
-                <div className="searchCard-Content__Title">
-                    {/* {props.work.titleAuth} */}
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium consequuntur autem minus velit ratione repudiandae.
+            <div className="searchbarResult_Content">
+                <div className="searchbarResult_Title">
+                    {props.work.titleAuth}
                 </div>
-                <div className="searchCard_Content__Author">
-                    {`by ${authorName}`}
+                <div className="searchbarResult_Author">
+                    by {authorName}
                 </div>
             </div>
-            
-        </div>
+  </div>
     );
 }
