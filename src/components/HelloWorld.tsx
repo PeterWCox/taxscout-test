@@ -34,17 +34,19 @@ const HelloWorld = () =>
           <input placeholder="Quick search..." className="searchbox_searchbar" />
 
           <div className="searchbox_searchResults">
+
+            {/* Search Cards */}
             {works?.map((work: Work) => {
               return (
                 <SearchCard work={work} />
               )
             })}
-            {[...Array(5)].map((i) => {
+
+            {/* Shimmers */}
+            {[...Array(3)].map((i) => {
               return (
               <ShimmerThumbnail 
                 height={60}
-                // width={36} 
-                // rounded
               />
             )})}  
 
