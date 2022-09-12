@@ -41,7 +41,7 @@ export const worksSelector = (state: any) => state.works
 export default worksSlice.reducer
 
 // Asynchronous thunk action
-export function fetchWorks()
+export function fetchWorks(searchTerm: string)
 {
   return async (dispatch: any) =>
   {
@@ -76,9 +76,13 @@ export function fetchWorks()
           console.log(error);
         });
       }
-      await getWorks(0, 3, ExpandLevel.LinksAndDetails, "Harry");
-      // console.log("WORKS");
-
+    
+      if (searchTerm.trim() !== "") {
+        await getWorks(0, 3, ExpandLevel.LinksAndDetails, `${searchTerm}`);
+      }
+      else {
+        dispatch(getWorksSuccess([]));
+      }
 
     } catch (error)
     {

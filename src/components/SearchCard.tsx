@@ -7,40 +7,50 @@ export interface ISearchCardProps {
 
 export const SearchCard = (props: ISearchCardProps) => {
 
-      let imageUrl = "";
+    //NOTE: props.work.titles.isbn can EITHEr be an array of objects or single object
+    //      so we need to check for that and handle it accordingly
+
+    let imageUrl = "";
+    let amazonUrl = "";
+
       let isbn: any = props.work.titles.isbn;
 
       if (!props.work?.titles) {
       }
       else if (Array.isArray(isbn)) {
-        imageUrl = `https://images.randomhouse.com/cover/${props.work.titles?.isbn[0].$}`;
+        // @ts-ignore
+        imageUrl = `https://images.randomhouse.com/cover/${props.work.titles?.isbn[0]["$"]}`;
+        // @ts-ignore
+        amazonUrl = `https://www.amazon.co.uk/s?i=stripbooks&rh=p_66%3A${props.work.titles?.isbn[0]["$"]}&Adv-Srch-Books-Submit.x=30&Adv-Srch-Books-Submit.y=9&__mk_en_GB=%C3%85M%C3%85Z%C3%95%C3%91&unfiltered=1&ref=sr_adv_b`;
       }
       else {
-        console.log(isbn["$"])
-        console.log(`https://images.randomhouse.com/cover/${isbn["$"]}`)
+        // @ts-ignore
         imageUrl = `https://images.randomhouse.com/cover/${isbn["$"]}`;
+        // @ts-ignore
+        amazonUrl = `https://www.amazon.co.uk/s?i=stripbooks&rh=p_66%3A${props.work.titles?.isbn["$"]}&Adv-Srch-Books-Submit.x=30&Adv-Srch-Books-Submit.y=9&__mk_en_GB=%C3%85M%C3%85Z%C3%95%C3%91&unfiltered=1&ref=sr_adv_b`;
       }
 
       const authorName = (props.work.titleAuth && props.work.titleAuth.trim() !== "") ? 
         (props.work.titleAuth.split(":")[1]?.trim() ?? props.work.authorweb) :
         props.work.authorweb;
 
+
+
     return (
         <div className="searchbar_Result">
-            {/* Book Photo */}
-            <div className="searchbarResult_Image">
-                <img src="https://images.randomhouse.com/cover/9780593099322" />
-            </div>
-
-            {/* Content */}
-            <div className="searchbarResult_Content">
-                <div className="searchbarResult_Title">
-                    {props.work.titleAuth}
+            <a href={amazonUrl}>
+                <div className="searchbarResult_Image">
+                    <img src={imageUrl} />
                 </div>
-                <div className="searchbarResult_Author">
-                    by {authorName}
+                <div className="searchbarResult_Content">
+                    <div className="searchbarResult_Title">
+                       {props.work.titleAuth}
+                    </div>
+                    <div className="searchbarResult_Author">
+                        by {authorName}
+                    </div>
                 </div>
-            </div>
-  </div>
+            </a>
+        </div>
     );
 }

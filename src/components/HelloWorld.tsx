@@ -15,57 +15,61 @@ const HelloWorld = () =>
 {
 
   const dispatch: any = useDispatch();
-  const { works, loadingWorks, worksHasErrors } = 
-    useSelector(worksSelector);
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const { works, loading, worksHasErrors } = useSelector(worksSelector);
 
   useEffect(() =>
   {
-    dispatch(fetchWorks())
-  }, [dispatch])
+    dispatch(fetchWorks(searchTerm))
+  }, [searchTerm])
 
-  
   return (
     <div className="container">
-
       <nav>
-
         <div className="searchbox">
 
-          <input placeholder="Quick search..." className="searchbox_searchbar" />
-
-          <div className="searchbox_searchResults">
-
+          {/* Searchbox */}
+          <input 
+            placeholder="Quick search..." 
+            className="searchbox_searchbar" 
+            onChange={debounce((e: any) => setSearchTerm(state => e.target.value), 250)}
+          />
+          
+          {searchTerm?.trim() !== "" && <div className="searchbox_searchResults searchbox_searchResultsMinimumWidth">
+           
             {/* Search Cards */}
             {works?.map((work: Work) => {
               return (
-                <SearchCard work={work} />
+                <SearchCard 
+                  key={work.workid}
+                  work={work} 
+                />
               )
             })}
 
             {/* Shimmers */}
-            {[...Array(3)].map((i) => {
-              return (
-              <ShimmerThumbnail 
-                height={60}
-              />
-            )})}  
-
-
-
+            {loading && [...Array(3)].map((i) => {
+                return (
+                <ShimmerThumbnail 
+                  height={60}
+                />
+            )})} 
+           
           </div>
+          }
+
+         
 
           
-
-
-
-          
-
+    
         </div>
-
       </nav>
 
+      <h1>{searchTerm}</h1>
 
-       
+      {/* <div>{worksHasErrors.toString()}</div>
+      <div>{loading.toString()}</div> */}
+
      </div>
   );
 

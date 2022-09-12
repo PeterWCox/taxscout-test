@@ -1,58 +1,64 @@
 .searchbar_Result {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    background-color: #fff;
-    align-items: center;
-    border-top: 1px solid silver;
-    // width: 100%;
-    // position: absolute;
 
-    // height: 616px;
-
-    .searchbarResult_Image {
-        display: grid;
-
-        img {
-            height: 60px;
-            aspect-ratio: 0.6;
-        }
-    }
-
-    .searchbarResult_Content {
-        // width: 80%;
+    a {
         display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        padding-right: 20px;
+        flex-direction: row;
+        gap: 5px;
+        background-color: #fff;
+        align-items: center;
+        border-top: 1px solid silver;
+        border-right: 1px solid silver;
+        text-decoration: none;
 
-        .searchbarResult_Title {
-            pointer-events: auto;
-            color: #333333;
-            font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
-            font-size: 14px;
-            line-height: 18px;
-            font-weight: bold;
-            word-wrap: break-word;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            box-sizing: inherit;
+        .searchbarResult_Image {
+            display: grid;
+
+            img {
+                height: 60px;
+                aspect-ratio: 0.6;
+            }
         }
 
-        .searchbarResult_Author {
-            line-height: 18px;
-            pointer-events: auto;
-            overflow-wrap: break-word;
-            margin-top: 4px;
-            color: #333333;
-            font-family: "Merriweather", "Georgia", serif;
-            white-space: nowrap;
+        .searchbarResult_Content {
+            // width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding-right: 20px;
+
             overflow: hidden;
+            white-space: nowrap;
             text-overflow: ellipsis;
-            font-size: 12px;
-            box-sizing: inherit;
+
+            .searchbarResult_Title {
+                pointer-events: auto;
+                color: #333333;
+                font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+                font-size: 14px;
+                line-height: 18px;
+                font-weight: bold;
+                word-wrap: break-word;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                box-sizing: inherit;
+            }
+
+            .searchbarResult_Author {
+                line-height: 18px;
+                pointer-events: auto;
+                overflow-wrap: break-word;
+                margin-top: 4px;
+                color: #333333;
+                font-family: "Merriweather", "Georgia", serif;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 12px;
+                box-sizing: inherit;
+            }
         }
     }
+
 
 }
