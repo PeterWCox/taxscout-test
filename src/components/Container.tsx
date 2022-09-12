@@ -6,9 +6,11 @@ import './Container.scss'
 import { Author } from "../models/Author";
 import { ExpandLevel } from "../models/Misc";
 import { Work } from "../models/Work";
-import { debounce } from "lodash";
+import { debounce, uniqueId } from "lodash";
 import { SearchCard } from "./SearchCard";
 import { ShimmerThumbnail  } from "react-shimmer-effects";
+import { SearchResults } from "./SearchResults";
+import { Constants } from "../common/Constants";
 
 const HelloWorld = () =>
 {
@@ -16,6 +18,7 @@ const HelloWorld = () =>
   const dispatch: any = useDispatch();
   const [searchTerm, setSearchTerm] = React.useState("");
   const { works, loading, worksHasErrors } = useSelector(worksSelector);
+  const [isSearchResultsDisplayed, setIsSearchResultsDisplayed] = React.useState(false);
 
   useEffect(() =>
   {
@@ -29,40 +32,24 @@ const HelloWorld = () =>
 
           {/* Searchbox */}
           <input 
-            placeholder="Quick search..." 
+            placeholder={Constants.SEARCHBOX_PLACEHOLDER} 
             className="searchbox_searchbar" 
             onChange={debounce((e: any) => setSearchTerm(state => e.target.value), 250)}
+            onFocus={() => setIsSearchResultsDisplayed(true)}
+            onBlur={() => setIsSearchResultsDisplayed(false)}
           />
-          
-          {searchTerm?.trim() !== "" && <div className="searchbox_searchResults searchbox_searchResultsMinimumWidth">
-           
-            {/* Search Cards */}
-            {!loading && works?.map((work: Work) => {
-              return (
-                <SearchCard 
-                  key={work.workid}
-                  work={work} 
-                />
-              )
-            })}
 
-            {/* Shimmers */}
-            {loading && [...Array(3)].map((i) => {
-                return (
-                <ShimmerThumbnail 
-                  height={60}
-                />
-            )})} 
-           
-          </div>
-          }
+          {/* Search results */}
+          {(works && searchTerm?.trim() && isSearchResultsDisplayed) ? <div className="searchbox_searchResults searchbox_searchResultsMinimumWidth">
+            <SearchResults 
+              work={works} 
+            />
+          </div> : null}
+
         </div>
       </nav>
 
       <h1>{searchTerm}</h1>
-
-      {/* <div>{worksHasErrors.toString()}</div>
-      <div>{loading.toString()}</div> */}
 
      </div>
   );
