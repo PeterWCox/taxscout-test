@@ -50,8 +50,6 @@ export function fetchWorks(searchTerm: string)
 
     try
     {
-      //Works
-      let works: any = [];
 
       const getWorks = async (start: number, end: number, expandLevel: ExpandLevel, search: string): Promise<void> => {
         var config = {
@@ -69,8 +67,7 @@ export function fetchWorks(searchTerm: string)
         axios(config)
         .then((response) => {
           console.log(response)
-          works = response.data.work;
-          dispatch(getWorksSuccess(works))
+          dispatch(getWorksSuccess(response.data.work))
         })
         .catch((error) => {
           console.log(error);

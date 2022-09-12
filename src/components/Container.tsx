@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchWorks, worksSelector } from '../slices/works';
-import './HelloWorld.scss'
+import './Container.scss'
 import { Author } from "../models/Author";
 import { ExpandLevel } from "../models/Misc";
 import { Work } from "../models/Work";
@@ -38,7 +38,7 @@ const HelloWorld = () =>
           {searchTerm?.trim() !== "" && <div className="searchbox_searchResults searchbox_searchResultsMinimumWidth">
            
             {/* Search Cards */}
-            {works?.map((work: Work) => {
+            {!loading && works?.map((work: Work) => {
               return (
                 <SearchCard 
                   key={work.workid}
