@@ -1,12 +1,12 @@
-
 export interface Isbn {
     "@formatcode": string;
-    $:             string;
+    $: string;
   }
   
-  
   export interface Titles {
-    isbn: Isbn;
+    
+    //This can be either an array of objects OR a single object - must be resolved at runtime
+    isbn: Isbn | Isbn[];  
   }
   
   export enum ExpandLevel {
@@ -16,7 +16,7 @@ export interface Isbn {
   
   export interface Isbn {
     "@contributortype": string;
-    $:                  string;
+    $: string;
   }
   
   export interface WorksClass {

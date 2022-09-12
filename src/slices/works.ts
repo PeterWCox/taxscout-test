@@ -54,11 +54,13 @@ export function fetchWorks(searchTerm: string)
       const getWorks = async (start: number, end: number, expandLevel: ExpandLevel, search: string): Promise<void> => {
         var config = {
           method: 'get',
-          url: `https://reststop.randomhouse.com/resources/works?
-            start=${start}&
-            max=${end}&
-            expandLevel=${expandLevel}&
-            search=${search}`.replace(/\s/g, ""),
+          url: "https://reststop.randomhouse.com/resources/works",
+          params: {
+            start: start,
+            max: end,
+            expandLevel: expandLevel,
+            search: search
+          },
           headers: { 
             'Accept': 'application/json'
           }

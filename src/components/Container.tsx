@@ -10,7 +10,6 @@ import { debounce } from "lodash";
 import { SearchCard } from "./SearchCard";
 import { ShimmerThumbnail  } from "react-shimmer-effects";
 
-
 const HelloWorld = () =>
 {
 
@@ -57,11 +56,6 @@ const HelloWorld = () =>
            
           </div>
           }
-
-         
-
-          
-    
         </div>
       </nav>
 

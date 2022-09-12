@@ -1,5 +1,7 @@
 //NOTES:
 
+import { Titles } from "./Misc";
+
 //1. The API only works for 1 word!
 
 export interface Work {
@@ -30,16 +32,7 @@ export interface Work {
   
     //e.g. "23847"
     workid: string;
-}
-
-export interface Titles {
-  isbn: Isbn[];
-}
-export interface Isbn {
 
 
-  "@formatcode": string;
 
-  //ISBN Number e.g. 9780307831385
-  $:             string;
 }
