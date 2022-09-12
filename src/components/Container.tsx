@@ -3,7 +3,6 @@ import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchWorks, worksSelector } from '../slices/works';
 import './Container.scss'
-import { Author } from "../models/Author";
 import { ExpandLevel } from "../models/Misc";
 import { Work } from "../models/Work";
 import { debounce, uniqueId } from "lodash";
@@ -36,15 +35,13 @@ const HelloWorld = () =>
             className="searchbox_searchbar" 
             onChange={debounce((e: any) => setSearchTerm(state => e.target.value), 250)}
             onFocus={() => setIsSearchResultsDisplayed(true)}
-            onBlur={() => setIsSearchResultsDisplayed(false)}
+            // onBlur={() => setIsSearchResultsDisplayed(false)}
           />
 
           {/* Search results */}
-          {(works && searchTerm?.trim() && isSearchResultsDisplayed) ? <div className="searchbox_searchResults searchbox_searchResultsMinimumWidth">
-            <SearchResults 
-              work={works} 
-            />
-          </div> : null}
+          {(works && searchTerm?.trim() && isSearchResultsDisplayed) && <div className="searchbox_searchResults searchbox_searchResultsMinimumWidth">
+            <SearchResults work={works as any} />
+          </div>}
 
         </div>
       </nav>

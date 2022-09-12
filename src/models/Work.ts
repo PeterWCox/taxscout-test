@@ -1,11 +1,6 @@
-//NOTES:
+import { Isbn, Titles } from "./Misc";
 
-import { Titles } from "./Misc";
-
-//1. The API only works for 1 word!
-
-export interface Work {
-
+export class Work {
     //e.g. "https://reststop.randomhouse.com/resources/works/23847"
     "@uri": string;
   
@@ -33,6 +28,49 @@ export interface Work {
     //e.g. "23847"
     workid: string;
 
+    public AmazonUrl = (): string => {
+
+        //Response is either an array of ISBNs or a single ISBN, must resolve at runtime
+        const isbn: Isbn | Isbn[] = this.titles?.isbn;
+        
+        if (!isbn) {
+            return "";
+        }
+
+        if (Array.isArray(isbn)) {
+            return `https://www.amazon.co.uk/s?i=stripbooks&rh=p_66%3A${isbn[0]["$"]}`;
+        } else {
+            return `https://www.amazon.co.uk/s?i=stripbooks&rh=p_66%3A${isbn["$"]}`;
+        }
+        
+    }
+
+    public CoverUrl = (): string => {
+
+        //Response is either an array of ISBNs or a single ISBN, must resolve at runtime
+        const isbn: Isbn | Isbn[] = this.titles?.isbn;
+        
+        if (!isbn) {
+            return "";
+        }
+
+        if (Array.isArray(isbn)) {
+            return `https://images.randomhouse.com/cover/${this.titles?.isbn[0]["$"]}`;
+        } else {
+            return `https://images.randomhouse.com/cover/${isbn["$"]}`;
+        }
+    }
+
+    public AuthorName = (): string => {
+
+        return this.titleshort;
+
+        return (this.titleAuth && this.titleAuth.trim() !== "") ? 
+            (this.titleAuth?.split(":")[1]?.trim() ?? this.authorweb) :
+            this.authorweb;
+    }
+
+    
 
 
 }

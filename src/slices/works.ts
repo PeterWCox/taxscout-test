@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { Work } from '../models/Author'
 import { ExpandLevel } from '../models/Misc'
 
 export const initialState = {
@@ -69,7 +70,21 @@ export function fetchWorks(searchTerm: string)
         axios(config)
         .then((response) => {
           console.log(response)
-          dispatch(getWorksSuccess(response.data.work))
+          const works = response.data.work.map((work: any) => {
+            const newWork = new Work();
+            newWork["@uri"] = work["@uri"];
+            newWork.authorweb = work.authorweb;
+            newWork.onsaledate = work.onsaledate;
+            newWork.titles = work.titles;
+            newWork.titleAuth = work.titleAuth;
+            newWork.titleSubtitleAuth = work.titleSubtitleAuth;
+            newWork.titleshort = work.titleshort;
+            newWork.titleweb = work.titleweb;
+            newWork.workid = work.workid;
+            return newWork;
+          });
+          console.log(works);
+          dispatch(getWorksSuccess(works));
         })
         .catch((error) => {
           console.log(error);

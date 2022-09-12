@@ -8,7 +8,7 @@ import { SearchCard } from "./SearchCard";
 import { Constants } from "../common/Constants";
 
 export interface ISearchResultsProps {
-    work: any;
+    work: Work[] | Work;
 }
 
 export const SearchResults = (props: ISearchResultsProps) => {
@@ -19,18 +19,18 @@ export const SearchResults = (props: ISearchResultsProps) => {
         return <p>An error has occured:</p>
     }
 
-    //If still loading data from API
-    if (loading) {
-        return (
-            [...Array(Constants.NUMBER_OF_SEARCH_RESULTS)].map((i) => {
-                return (
-                <ShimmerThumbnail 
-                    key={uniqueId()}
-                    height={60}
-                />
-            )})
-        );
-    }
+    //If still loading data from API, return X Shimmers
+    // if (loading) {
+    //     return (
+    //         [...Array(Constants.NUMBER_OF_SEARCH_RESULTS)].map((i) => {
+    //             return (
+    //             <ShimmerThumbnail 
+    //                 key={uniqueId()}
+    //                 height={60}
+    //             />
+    //         )})
+    //     );
+    // }
 
     //If work is an array,
     if (Array.isArray(props.work)) {
