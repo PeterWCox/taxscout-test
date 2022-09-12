@@ -8,7 +8,7 @@ import { SearchCard } from "./SearchCard";
 import { Constants } from "../common/Constants";
 
 export interface ISearchResultsProps {
-    work: Work | Work[];
+    work: any;
 }
 
 export const SearchResults = (props: ISearchResultsProps) => {
@@ -35,14 +35,16 @@ export const SearchResults = (props: ISearchResultsProps) => {
     //If work is an array,
     if (Array.isArray(props.work)) {
         return (
-                works?.map((work: Work) => {
+            <div>
+                {works?.map((work: Work) => {
                     return (
                     <SearchCard 
                         key={uniqueId()}
                         work={work} 
                     />
                     )
-                })
+                })}
+            </div>
         )
     }
 
