@@ -17,7 +17,7 @@ export const SearchCard = (props: ISearchCardProps) => {
                 </div>
                 <div className="searchbarResult_Content">
                     <div className="searchbarResult_Title">
-                       {props.work?.titleAuth}
+                       {props.work?.titleweb}
                     </div>
                     <div className="searchbarResult_Author">
                         by {author}

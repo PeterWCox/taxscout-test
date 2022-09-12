@@ -1,3 +1,9 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+
 .searchbar_Result {
 
     a {
@@ -9,6 +15,7 @@
         text-decoration: none;
         border-bottom: 1px solid silver;
         padding: 10px 0px;
+        font-family: 'Segoe UI', 'Open Sans', Helvetica, sans-serif;
 
         .searchbarResult_Image {
             display: grid;
@@ -20,7 +27,6 @@
         }
 
         .searchbarResult_Content {
-            // width: 80%;
             display: flex;
             flex-direction: column;
             justify-content: space-around;
@@ -33,7 +39,6 @@
             .searchbarResult_Title {
                 pointer-events: auto;
                 color: #333333;
-                font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
                 font-size: 14px;
                 line-height: 18px;
                 font-weight: bold;
@@ -50,7 +55,7 @@
                 overflow-wrap: break-word;
                 margin-top: 4px;
                 color: #333333;
-                font-family: "Merriweather", "Georgia", serif;
+
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -59,6 +64,5 @@
             }
         }
     }
-
 
 }

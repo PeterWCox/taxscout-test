@@ -1,6 +1,14 @@
+$segoe: 'Segoe UI', 'Open Sans', Helvetica, sans-serif;
+$segoe-semibold: 'Segoe UI Semibold', 'Open Sans', Helvetica, sans-serif;
+$segoe-bold: 'Segoe UI Bold', 'Open Sans', Helvetica, sans-serif;
+$segoe-light: 'Segoe UI Light', 'Open Sans', Helvetica, sans-serif;
+
 * {
     margin: 0px;
     padding: 0px;
+    font-family: $segoe;
+
+
 }
 
 .container {

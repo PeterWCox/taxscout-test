@@ -69,22 +69,49 @@ export function fetchWorks(searchTerm: string)
         
         axios(config)
         .then((response) => {
-          console.log(response)
-          const works = response.data.work.map((work: any) => {
-            const newWork = new Work();
-            newWork["@uri"] = work["@uri"];
-            newWork.authorweb = work.authorweb;
-            newWork.onsaledate = work.onsaledate;
-            newWork.titles = work.titles;
-            newWork.titleAuth = work.titleAuth;
-            newWork.titleSubtitleAuth = work.titleSubtitleAuth;
-            newWork.titleshort = work.titleshort;
-            newWork.titleweb = work.titleweb;
-            newWork.workid = work.workid;
-            return newWork;
-          });
-          console.log(works);
-          dispatch(getWorksSuccess(works));
+
+          console.log(response);
+
+          let worksToReturn: any;
+
+          //Check if response.data.work is a property
+          if (!response?.data?.work) {
+            dispatch(getWorksSuccess([]));
+            return;
+          }
+
+          if (Array.isArray(response.data.work)) {
+            worksToReturn = response.data.work.map((w: any) => {
+              const newWork = new Work();
+              newWork["@uri"] = w["@uri"] ?? ""
+              newWork.authorweb = w.authorweb ?? "";
+              newWork.onsaledate = w.onsaledate ?? "";
+              newWork.titles = w.titles ?? "";
+              newWork.titleAuth ?? "";
+              newWork.titleSubtitleAuth = w.titleSubtitleAuth ?? "";
+              newWork.titleshort = w.titleshort ?? "";
+              newWork.titleweb = w.titleweb  ?? "";
+              newWork.workid = w.workid ?? "";
+              return newWork;
+            });
+          }
+          else {
+            worksToReturn = new Work()
+            worksToReturn["@uri"] = response.data.work["@uri"] ?? "";
+            worksToReturn.authorweb = response.data.work.authorweb ?? "";
+            worksToReturn.onsaledate = response.data.work.onsaledate ?? "";
+            worksToReturn.titles = response.data.work.titles ?? "";
+            worksToReturn.titleAuth = response.data.work.titleAuth ?? "";
+            worksToReturn.titleSubtitleAuth = response.data.work.titleSubtitleAuth ?? "";
+            worksToReturn.titleshort = response.data.work.titleshort ?? "";
+            worksToReturn.titleweb = response.data.work.titleweb ?? "";
+            worksToReturn.workid = response.data.work.workid ?? "";
+            return worksToReturn;
+          }
+
+          console.log(worksToReturn);
+
+          dispatch(getWorksSuccess(worksToReturn));
         })
         .catch((error) => {
           console.log(error);
