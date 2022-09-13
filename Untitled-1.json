@@ -1,0 +1,66 @@
+[
+    {
+        "@uri": "https://reststop.randomhouse.com/resources/authors/64427",
+        "approved": "X",
+        "authordisplay": "John Williams",
+        "authorfirst": "John",
+        "authorfirstlc": "john",
+        "authorid": "64427",
+        "authorlast": "Williams",
+        "authorlastfirst": "WILLIAMS, JOHN",
+        "authorlastlc": "williams",
+        "titles": {
+            "isbn": {
+                "@contributortype": "A",
+                "$": "9781785040832"
+            }
+        },
+        "lastinitial": "w",
+        "spotlight": "John Williams started his career as a developer on  pioneering special effects software and broadcast automation.<br>He became Digital  Media CTO at a European startup incubator before moving to head up a  small media technology consultancy team at Deloitte.<br>John left to  consult independently to broadcasters around the world before finally  founding The Ideas Lab and writing his first bestselling book <i>Screw Work Let's Play.</i>",
+        "works": {
+            "works": [
+                "191127",
+                "191129",
+                "191131",
+                "191133",
+                "205450",
+                "429136",
+                "430202",
+                "434194",
+                "442783",
+                "443128",
+                "555072"
+            ]
+        }
+    },
+    {
+        "@uri": "https://reststop.randomhouse.com/resources/authors/119851",
+        "approved": "X",
+        "authordisplay": "John Williams",
+        "authorfirst": "John",
+        "authorfirstlc": "john",
+        "authorid": "119851",
+        "authorlast": "Williams",
+        "authorlastfirst": "WILLIAMS, JOHN",
+        "authorlastlc": "williams",
+        "titles": null,
+        "lastinitial": "w",
+        "works": {
+            "works": "203735"
+        }
+    },
+    {
+        "@uri": "https://reststop.randomhouse.com/resources/authors/220666",
+        "approved": "X",
+        "authordisplay": "John Williams",
+        "authorfirst": "John",
+        "authorfirstlc": "john",
+        "authorid": "220666",
+        "authorlast": "Williams",
+        "authorlastfirst": "WILLIAMS, JOHN",
+        "authorlastlc": "williams",
+        "titles": null,
+        "lastinitial": "w",
+        "works": null
+    }
+]
